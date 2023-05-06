@@ -1,5 +1,14 @@
+using UnityEngine;
+
 public class RefactoredPlayerController : PlayerControllerBase
 {
+    [SerializeField]
+    private RefactoredUIManager uiManager;
+
+
+
+    protected Rigidbody selectedBullet;
+
     private static RefactoredPlayerController instance;
 
      private RefactoredPlayerController()
@@ -19,8 +28,23 @@ public class RefactoredPlayerController : PlayerControllerBase
         }
     }
 
- 
-    protected override bool NoSelectedBullet => throw new System.NotImplementedException();
+    private void Update()
+    {
+        //OnScoreChangedEvent(Score);
+    }
+
+
+    protected override bool NoSelectedBullet => selectedBullet == null;
+
+    private void OnScoreChangedEvent(int scoreAdd)
+    {
+        base.UpdateScore(scoreAdd);
+    }
+
+    private void OnBulletSelected(int index)
+    {
+
+    }
 
     protected override void Shoot()
     {

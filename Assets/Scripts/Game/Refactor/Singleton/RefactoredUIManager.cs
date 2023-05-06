@@ -1,5 +1,13 @@
+using UnityEngine;
+
 public class RefactoredUIManager : UIManagerBase
 {
+    [SerializeField]
+    private PlayerController playerController;
+
+    [SerializeField]
+    private GameControllerBase gameController;
+
     private static RefactoredUIManager instance;
 
     private RefactoredUIManager()
@@ -20,7 +28,7 @@ public class RefactoredUIManager : UIManagerBase
     }
 
 
-    protected override PlayerControllerBase PlayerController => throw new System.NotImplementedException();
+    protected override PlayerControllerBase PlayerController => playerController;
 
-    protected override GameControllerBase GameController => throw new System.NotImplementedException();
+    protected override GameControllerBase GameController => gameController;
 }
