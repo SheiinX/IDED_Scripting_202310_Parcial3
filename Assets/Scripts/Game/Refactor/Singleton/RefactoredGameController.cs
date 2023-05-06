@@ -27,6 +27,12 @@ public sealed class RefactoredGameController : GameControllerBase
 
     protected override void OnObstacleDestroyed(int hp)
     {
+        
         throw new System.NotImplementedException();
+    }
+
+    public void OnGameOver()
+    {
+        SetGameOver();
     }
 }
