@@ -9,12 +9,12 @@ public class RefactoredUIManager : UIManagerBase
     private GameControllerBase gameController;
 
     private static RefactoredUIManager instance;
-    
+
     private RefactoredUIManager()
     {
 
     }
-    
+
     public static RefactoredUIManager Instance
     {
         get
@@ -27,7 +27,6 @@ public class RefactoredUIManager : UIManagerBase
             return instance;
         }
     }
-
 
     protected override PlayerControllerBase PlayerController => playerController;
 

@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a481274d104864eb146bd40d86772f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playTime: 60
+  playTime: 10
   uiManager: {fileID: 66937651}
   playerController: {fileID: 1630337355}
   obstacleSpawner: {fileID: 1626675254}

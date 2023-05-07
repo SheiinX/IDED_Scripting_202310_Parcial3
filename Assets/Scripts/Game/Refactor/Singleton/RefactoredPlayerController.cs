@@ -20,10 +20,10 @@ public class RefactoredPlayerController : PlayerControllerBase
             Destroy(this);
         }
     }
-    
+
     private RefactoredPlayerController()
     {
-        
+
     }
 
     public static RefactoredPlayerController Instance
@@ -39,12 +39,6 @@ public class RefactoredPlayerController : PlayerControllerBase
         }
     }
 
-    private void Update()
-    {
-        //OnScoreChangedEvent(Score);
-    }
-
-
     protected override bool NoSelectedBullet => selectedBullet == null;
 
     private void OnScoreChangedEvent(int scoreAdd)
@@ -59,7 +53,7 @@ public class RefactoredPlayerController : PlayerControllerBase
 
     protected override void Shoot()
     {
-        //base.Shoot();
+        Instantiate(selectedBullet, spawnPos.position, spawnPos.rotation).AddForce(transform.forward * shootForce, ForceMode.Force);
     }
 
     protected override void SelectBullet(int index)

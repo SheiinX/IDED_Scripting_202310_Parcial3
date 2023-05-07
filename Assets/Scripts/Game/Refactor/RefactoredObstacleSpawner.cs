@@ -41,18 +41,9 @@ public class RefactoredObstacleSpawner : ObstacleSpawnerBase
             return result;
         }
     }
-    /*
-    [SerializeField]
-    private PoolBase obstacleLowPool;
 
-    [SerializeField]
-    private PoolBase obstacleMidPool;
-
-    [SerializeField]
-    private PoolBase obstacleHardPool;
-    */
     protected override void SpawnObject()
     {
-        throw new System.NotImplementedException();
+        Instantiate(ObstaclePrefabs[ObjectIndex], new Vector2(Random.Range(MinX, MaxX), YPos), Quaternion.identity);
     }
 }

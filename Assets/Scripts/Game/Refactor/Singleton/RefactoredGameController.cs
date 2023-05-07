@@ -15,7 +15,7 @@ public sealed class RefactoredGameController : GameControllerBase
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -41,7 +41,6 @@ public sealed class RefactoredGameController : GameControllerBase
             return instance;
         }
     }
-    
 
     protected override PlayerControllerBase PlayerController => playerController;
 
@@ -51,15 +50,18 @@ public sealed class RefactoredGameController : GameControllerBase
 
     protected override void OnScoreChanged(int scoreAdd)
     {
+        PlayerController?.SendMessage("UpdateScore", scoreAdd);
+        UiManager?.SendMessage("UpdateScoreLabel");
+        /*
         OnObstacleDestroyed(scoreAdd);
+        UiManager?.SendMessage("UpdateScoreLabel");*/
     }
 
-    public void OnGameOver()
+    protected override void SetGameOver()
     {
         UiManager?.SendMessage("OnGameOver");
         PlayerController?.SendMessage("OnGameOver");
         Spawner?.SendMessage("OnGameOver");
         base.SetGameOver();
-        //SetGameOver();
     }
 }
