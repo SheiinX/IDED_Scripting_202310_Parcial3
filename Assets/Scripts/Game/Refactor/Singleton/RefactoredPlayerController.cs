@@ -59,7 +59,8 @@ public class RefactoredPlayerController : PlayerControllerBase
 
     protected override void Shoot()
     {
-        //base.Shoot();
+        Instantiate(selectedBullet, spawnPos.position, spawnPos.rotation)
+                            .AddForce(transform.forward * shootForce, ForceMode.Force);
     }
 
     protected override void SelectBullet(int index)
