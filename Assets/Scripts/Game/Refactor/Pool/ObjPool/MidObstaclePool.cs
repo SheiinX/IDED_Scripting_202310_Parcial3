@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class HardObstaclePool : PoolBase
+public class MidObstaclePool : PoolBase
 {
     [SerializeField]
-    private GameObject hardObstaclePrefab;
+    private GameObject lowObstaclePrefab;
 
     //private GameObject blueBulletGO;
     //private int i = 0;
@@ -15,7 +14,7 @@ public class HardObstaclePool : PoolBase
     {
         //blueBulletGO = new GameObject($"BlueBullet ({i++})");
         OnObjectToRecycle(gameObject);
-        GameObject newInstance = Instantiate(hardObstaclePrefab, transform.position, Quaternion.identity);
+        GameObject newInstance = Instantiate(lowObstaclePrefab, transform.position, Quaternion.identity);
 
         RecycleInstance(newInstance);
     }

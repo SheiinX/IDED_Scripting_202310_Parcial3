@@ -3,36 +3,20 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class greenBullet : PoolBase, IPoolable
+public class GreenBullet : PoolBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    [SerializeField]
+    private Rigidbody greenBulletPrefab;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    public virtual void RecycleInstance(GameObject instance)
-    {
-
-    }
-
-    public void New()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Free()
-    {
-        throw new System.NotImplementedException();
-    }
+    //private GameObject blueBulletGO;
+    //private int i = 0;
 
     protected override void AddNewInstanceToPool()
     {
-        throw new System.NotImplementedException();
+        //blueBulletGO = new GameObject($"BlueBullet ({i++})");
+        OnObjectToRecycle(gameObject);
+        Rigidbody newInstance = Instantiate(greenBulletPrefab, transform.position, Quaternion.identity);
+
+        RecycleInstance(newInstance);
     }
 }
