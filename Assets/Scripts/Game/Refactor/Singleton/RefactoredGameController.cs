@@ -1,7 +1,34 @@
+using UnityEngine;
+
 public sealed class RefactoredGameController : GameControllerBase
 {
+    [SerializeField]
+    private RefactoredUIManager uiManager;
+
+    [SerializeField]
+    private RefactoredPlayerController playerController;
+
+    [SerializeField]
+    private RefactoredObstacleSpawner obstacleSpawner;
+
     private static RefactoredGameController instance;
 
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
+    private RefactoredGameController()
+    {
+
+    }
     public static RefactoredGameController Instance
     {
         get
@@ -9,30 +36,30 @@ public sealed class RefactoredGameController : GameControllerBase
             if (instance == null)
             {
                 instance = new RefactoredGameController();
+                DontDestroyOnLoad(instance);
             }
             return instance;
         }
     }
+    
 
-    private RefactoredGameController()
+    protected override PlayerControllerBase PlayerController => playerController;
+
+    protected override UIManagerBase UiManager => uiManager;
+
+    protected override ObstacleSpawnerBase Spawner => obstacleSpawner;
+
+    protected override void OnScoreChanged(int scoreAdd)
     {
-        
-    }
-
-    protected override PlayerControllerBase PlayerController => throw new System.NotImplementedException();
-
-    protected override UIManagerBase UiManager => throw new System.NotImplementedException();
-
-    protected override ObstacleSpawnerBase Spawner => throw new System.NotImplementedException();
-
-    protected override void OnScoreChanged(int hp)
-    {
-        
-        throw new System.NotImplementedException();
+        OnObstacleDestroyed(scoreAdd);
     }
 
     public void OnGameOver()
     {
-        SetGameOver();
+        UiManager?.SendMessage("OnGameOver");
+        PlayerController?.SendMessage("OnGameOver");
+        Spawner?.SendMessage("OnGameOver");
+        base.SetGameOver();
+        //SetGameOver();
     }
 }

@@ -5,13 +5,23 @@ public class RefactoredPlayerController : PlayerControllerBase
     [SerializeField]
     private RefactoredUIManager uiManager;
 
-
-
     protected Rigidbody selectedBullet;
 
     private static RefactoredPlayerController instance;
 
-     private RefactoredPlayerController()
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    
+    private RefactoredPlayerController()
     {
         
     }
@@ -23,6 +33,7 @@ public class RefactoredPlayerController : PlayerControllerBase
             if (instance == null)
             {
                 instance = new RefactoredPlayerController();
+                DontDestroyOnLoad(instance);
             }
             return instance;
         }
@@ -53,6 +64,7 @@ public class RefactoredPlayerController : PlayerControllerBase
 
     protected override void SelectBullet(int index)
     {
-        //base.SelectBullet(index);
+        selectedBullet = bulletPrefabs[GameUtils.GetClampedValue(index, bulletPrefabs.Length)];
+        uiManager.SendMessage("EnableIcon", index);
     }
 }

@@ -178,8 +178,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefactoredUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5764797619048575460, guid: f90b870f61324b44eb11d79a229d791d, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 752566440}
+    - target: {fileID: 5764797619048575460, guid: f90b870f61324b44eb11d79a229d791d, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1630337355}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f90b870f61324b44eb11d79a229d791d, type: 3}
+--- !u!114 &66937651 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5764797619048575460, guid: f90b870f61324b44eb11d79a229d791d, type: 3}
+  m_PrefabInstance: {fileID: 66937650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d9204190af4b546a18eb23b403d6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &257161268
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +546,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playTime: 60
+  uiManager: {fileID: 66937651}
+  playerController: {fileID: 1630337355}
+  obstacleSpawner: {fileID: 1626675254}
 --- !u!1 &797594116
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,11 +813,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
+  instanceRate: 1.25
   obstaclePrefabs:
   - {fileID: 2443629817618562694, guid: 76548a56b3d150a479cd80e4fb1c1cd7, type: 3}
   - {fileID: 628409427733347814, guid: 688310b581d4fd5469b85ffa94dd84bf, type: 3}
   - {fileID: 1625975584058051328, guid: 4d07619888e569c40b4e52f51b4971ab, type: 3}
-  instanceRate: 1.25
 --- !u!1 &1630337349
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,6 +936,7 @@ MonoBehaviour:
   - {fileID: 3698230454846105843, guid: 98c34f56ab15a424584eeba528a102d5, type: 3}
   spawnPos: {fileID: 1745106549}
   shootForce: 250
+  uiManager: {fileID: 66937651}
 --- !u!1 &1739405054
 GameObject:
   m_ObjectHideFlags: 0

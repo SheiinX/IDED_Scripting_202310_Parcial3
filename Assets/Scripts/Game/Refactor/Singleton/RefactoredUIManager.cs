@@ -3,18 +3,18 @@ using UnityEngine;
 public class RefactoredUIManager : UIManagerBase
 {
     [SerializeField]
-    private PlayerController playerController;
+    private RefactoredPlayerController playerController;
 
     [SerializeField]
     private GameControllerBase gameController;
 
     private static RefactoredUIManager instance;
-
+    
     private RefactoredUIManager()
     {
 
     }
-
+    
     public static RefactoredUIManager Instance
     {
         get
@@ -22,6 +22,7 @@ public class RefactoredUIManager : UIManagerBase
             if (instance == null)
             {
                 instance = new RefactoredUIManager();
+                DontDestroyOnLoad(instance);
             }
             return instance;
         }
