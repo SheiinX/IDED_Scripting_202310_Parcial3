@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class lowObstaclePool : PoolBase, IPoolable
+/*public class lowObstaclePool : PoolBase, IPoolable
 {
     
     void Start()
@@ -28,7 +28,7 @@ public class lowObstaclePool : PoolBase, IPoolable
     {
         GameObject instance = null;
 
-       /* if (instances.Count > 0)
+       if (instances.Count > 0)
         {
             instance = instances[0];
             instance.SetActive(true);
@@ -38,7 +38,7 @@ public class lowObstaclePool : PoolBase, IPoolable
         {
             instance = Instantiate(basePrefab, transform.position, Quaternion.identity);
             instance.GetComponent<PoolableObject>().Pool = this;
-        }*/
+        }
 
         return instance;
     }
@@ -59,4 +59,4 @@ public class lowObstaclePool : PoolBase, IPoolable
     {
         throw new System.NotImplementedException();
     }
-}
+}*/

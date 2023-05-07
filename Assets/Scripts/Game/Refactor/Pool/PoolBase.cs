@@ -47,7 +47,7 @@ public abstract class PoolBase : MonoBehaviour, IPool
     protected abstract void AddNewInstanceToPool();
 }
 
-/*public abstract class PoolBase<T> : MonoBehaviour, IPool //se edit�
+    public abstract class PoolBase<T> : MonoBehaviour, IPool //se edit�
     where T : IPoolable
 {
 
@@ -79,4 +79,4 @@ public abstract class PoolBase : MonoBehaviour, IPool
             instances.Add(Instantiate(basePrefab, transform.position, Quaternion.identity));
         }
     }
-}*/
+}

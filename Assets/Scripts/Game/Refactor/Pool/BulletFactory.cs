@@ -26,5 +26,4 @@ using UnityEngine;
             Destroy(gameObject);
         }
     }
-}
-*/
+}*/
