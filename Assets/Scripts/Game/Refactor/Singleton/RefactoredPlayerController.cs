@@ -58,12 +58,7 @@ public class RefactoredPlayerController : PlayerControllerBase
         {
             return;
         }
-
-        gameObject.SetActive(true);
-        transform.position = spawnPos.position;
-        transform.rotation = spawnPos.rotation;
-
-
+        Instantiate(selectedBullet, spawnPos.position, spawnPos.rotation).AddForce(transform.forward * shootForce, ForceMode.Force);
     }
 
     protected override void SelectBullet(int index)
