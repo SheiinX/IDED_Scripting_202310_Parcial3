@@ -8,6 +8,8 @@ public class BlueBullet : PoolBase
     [SerializeField]
     private Rigidbody blueBulletPrefab;
 
+    private string blue = "BLUE";
+
     //private GameObject blueBulletGO;
     //private int i = 0;
 
@@ -17,6 +19,6 @@ public class BlueBullet : PoolBase
         OnObjectToRecycle(gameObject);
         Rigidbody newInstance = Instantiate(blueBulletPrefab, transform.position, Quaternion.identity);
 
-        RecycleInstance(newInstance);
+        RecycleInstance(newInstance, blue);
     }
 }

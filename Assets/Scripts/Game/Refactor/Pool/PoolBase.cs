@@ -6,6 +6,8 @@ using UnityEngine;
     where T : IPool*/
 public abstract class PoolBase : PoolableObject
 {
+    private static PoolBase instance;
+
     [SerializeField]
     private int count = 0;
 
@@ -13,7 +15,11 @@ public abstract class PoolBase : PoolableObject
     private GameObject basePrefab;
 
     private List<GameObject> instances = new List<GameObject>();
-    private List<Rigidbody> instanceBullet = new List<Rigidbody>();
+    private List<Rigidbody> instanceBulletBlue = new List<Rigidbody>();
+    private List<Rigidbody> instanceBulletRed = new List<Rigidbody>();
+    private List<Rigidbody> instanceBulletGreen = new List<Rigidbody>();
+
+    public static PoolBase Instance { get => instance; private set => instance = value; }
 
     public void RecycleInstance(GameObject instance)
     {
@@ -21,10 +27,23 @@ public abstract class PoolBase : PoolableObject
         instances.Add(instance);
     }
 
-    public void RecycleInstance(Rigidbody instance)
+    public void RecycleInstance(Rigidbody instance, string bulletType)
     {
-        instance.gameObject.SetActive(false);
-        instanceBullet.Add(instance);
+        if(bulletType == "BLUE")
+        {
+            instance.gameObject.SetActive(false);
+            instanceBulletBlue.Add(instance);
+        }
+        else if(bulletType == "GREEN")
+        {
+            instance.gameObject.SetActive(false);
+            instanceBulletGreen.Add(instance);
+        }
+        else if(bulletType == "RED")
+        {
+            instance.gameObject.SetActive(false);
+            instanceBulletRed.Add(instance);
+        }
     }
 
     public GameObject RetrieveInstanceObstacle()
@@ -47,7 +66,7 @@ public abstract class PoolBase : PoolableObject
         return targetRetrieve;
     }
 
-    public Rigidbody RetrieveInstanceBullet()
+    public Rigidbody RetrieveInstanceBullet(string bulletType)
     {
         if (basePrefab == null)
         {
@@ -59,17 +78,49 @@ public abstract class PoolBase : PoolableObject
             AddNewInstanceToPool();
         }
 
-        Rigidbody targetRetrieve = instanceBullet[0];
-        instanceBullet.Remove(targetRetrieve);
-        transform.parent = null;
-        gameObject.SetActive(true);
-        return targetRetrieve;
+        if(bulletType == "BLUE")
+        {
+            Rigidbody targetRetrieve = instanceBulletBlue[0];
+            instanceBulletBlue.Remove(targetRetrieve);
+            transform.parent = null;
+            gameObject.SetActive(true);
+            return targetRetrieve;
+        }
+        else if (bulletType == "GREEN")
+        {
+            Rigidbody targetRetrieve = instanceBulletGreen[0];
+            instanceBulletGreen.Remove(targetRetrieve);
+            transform.parent = null;
+            gameObject.SetActive(true);
+            return targetRetrieve;
+        }
+        else if (bulletType == "RED")
+        {
+            Rigidbody targetRetrieve = instanceBulletRed[0];
+            instanceBulletRed.Remove(targetRetrieve);
+            transform.parent = null;
+            gameObject.SetActive(true);
+            return targetRetrieve;
+        }
+        else
+        {
+            return default;
+        }
     }
+
+    protected void Start()
+    {
+        PopulatePool();
+    }
+
     private void PopulatePool()
     {
         for (int i = 0; i < count; i++)
-        {
+        {/*
             instances.Add(Instantiate(basePrefab, transform.position, Quaternion.identity));
+            instanceBulletBlue.Add(Instantiate(basePrefab, transform.position, Quaternion.identity));
+            instanceBulletRed.Add(Instantiate(basePrefab, transform.position, Quaternion.identity));
+            instanceBulletGreen.Add(Instantiate(basePrefab, transform.position, Quaternion.identity));*/
         }
     }
 
